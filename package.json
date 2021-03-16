@@ -1,0 +1,12 @@
+{
+  "name": "flutter-architecture-blueprints",
+  "author": "wasabeef",
+  "husky": {
+    "hooks": {
+      "pre-push": "make format-analyze"
+    }
+  },
+  "devDependencies": {
+    "husky": "^5.1.3"
+  }
+}
