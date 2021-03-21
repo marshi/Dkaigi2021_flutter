@@ -37,7 +37,8 @@ import '../gen/fonts.gen.dart';
 // 0%   00
 
 final appThemeNotifierProvider = ChangeNotifierProvider<AppTheme>(
-    (ref) => AppTheme(ref.read(themeRepositoryProvider)));
+  (ref) => AppTheme(ref.read(themeRepositoryProvider)),
+);
 
 const headline1 = TextStyle(
   fontSize: 24,

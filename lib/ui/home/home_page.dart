@@ -20,24 +20,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(L10n.of(context)!.home,
-              style: Theme.of(context).textTheme.headline1),
+          title: Text(
+            L10n.of(context)!.home,
+            style: Theme.of(context).textTheme.headline1,
+          ),
           actions: [
             // action button
             IconButton(
               icon: const Icon(Icons.color_lens),
-              onPressed: () async => context
-                  .read(appThemeNotifierProvider)
-                  .toggle()
-                  .catchError((error) {
-                showErrorSnackbar(L10n.of(context)!.error,
-                    L10n.of(context)!.failedSwitchTheme);
-              }),
+              onPressed: () async =>
+                  context.read(appThemeNotifierProvider).toggle().catchError(
+                (error) {
+                  showErrorSnackbar(L10n.of(context)!.error,
+                      L10n.of(context)!.failedSwitchTheme);
+                },
+              ),
             ),
             IconButton(
                 icon: HookBuilder(builder: (context) {
                   final user = useProvider(
-                      userViewModelProvider.select((value) => value.user));
+                    userViewModelProvider.select((value) => value.user),
+                  );
                   return CircleAvatar(
                     backgroundImage: profileImageProvider(user?.photoURL),
                     backgroundColor: Colors.transparent,
