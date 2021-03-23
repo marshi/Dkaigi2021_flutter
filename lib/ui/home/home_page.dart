@@ -1,3 +1,4 @@
+import 'package:app/ui/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: DkaigiDrawer(),
         appBar: AppBar(
           title: Text(
             L10n.of(context)!.home,
