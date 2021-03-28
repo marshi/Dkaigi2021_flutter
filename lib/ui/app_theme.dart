@@ -53,7 +53,8 @@ const buttonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const accentColor = Color(0xff17c063);
+// const accentColor = Color(0xff17c063);
+const accentColor = Colors.black;
 const errorColor = Color(0xffff5544);
 
 ThemeData get lightTheme {
