@@ -29,9 +29,11 @@ class _DHomePageState extends State<DHomePage> {
             ),
             body: ScrollConfiguration(
               behavior: MyBehavior(),
-              child: const TabBarView(
+              child: TabBarView(
                 children: [
-                  HomeTab(icon: Icons.directions_car),
+                  HomeTab(
+                    icon: Icons.directions_car,
+                  ),
                   TabPage(icon: Icons.directions_bike),
                   TabPage(icon: Icons.directions_bike),
                   TabPage(icon: Icons.directions_bike),

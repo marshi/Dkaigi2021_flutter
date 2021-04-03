@@ -6,34 +6,46 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HomeTab extends StatelessWidget {
   final IconData icon;
 
-  const HomeTab({Key? key, required this.icon}) : super(key: key);
+  HomeTab({
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var viewModel = context.read(dhomeViewModelProvider);
-
     return HookBuilder(
       builder: (context) {
-        final feedItems = useProvider(
-          dhomeViewModelProvider.state.select((value) => value.feedItems),
-        );
         print("aiueo");
-        print(feedItems);
+        var scrollController = ScrollController();
         return Column(
           children: [
+            HookBuilder(builder: (context) {
+              final feedItems = useProvider(
+                dhomeViewModelProvider.state.select((value) => value.feedItems),
+              );
+              print(feedItems);
+              return Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                  shrinkWrap: true,
+                  itemCount: feedItems.length,
+                  itemBuilder: (context, index) {
+                    return Text(
+                      feedItems[index].id.toString(),
+                      key: ValueKey(feedItems[index].id),
+                    );
+                  },
+                ),
+              );
+            }),
             MaterialButton(
               child: const Text("aiueo"),
               onPressed: () {
                 viewModel.feedContents();
+                scrollController
+                    .jumpTo(scrollController.position.maxScrollExtent + 20);
               },
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: feedItems.length,
-                itemBuilder: (context, index) {
-                  return Text(feedItems[index].id.toString());
-                },
-              ),
             ),
           ],
         );
