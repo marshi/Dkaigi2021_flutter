@@ -6,12 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'auth_data_source.dart';
-
 class FeedDataSourceImpl implements FeedDataSource {
   FeedDataSourceImpl(this._firebaseAuth);
 
   final firebase.FirebaseAuth _firebaseAuth;
+
+  var id = 0;
 
   Future<void> signOut() {
     return GoogleSignIn()
@@ -24,13 +24,19 @@ class FeedDataSourceImpl implements FeedDataSource {
   }
 
   @override
-  Future<Result<FeedItem>> feedContents() {
+  Future<Result<List<FeedItem>>> feedContents() {
+    print(id);
     return Future.sync(
-      () => const Result.success(
-        data: FeedItem(
-          id: "id",
-          title: MultiLanguageTitle(jaTitle: "jaTitle", enTitle: "enTitle"),
-        ),
+      () => Result.success(
+        data: [
+          FeedItem(
+            id: id++,
+            title: const MultiLanguageTitle(
+              jaTitle: "jaTitle",
+              enTitle: "enTitle",
+            ),
+          )
+        ],
       ),
     );
   }

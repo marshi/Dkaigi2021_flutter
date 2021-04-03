@@ -8,7 +8,7 @@ part of 'feed_item.dart';
 
 _$_FeedItem _$_$_FeedItemFromJson(Map<String, dynamic> json) {
   return _$_FeedItem(
-    id: json['id'] as String,
+    id: json['id'] as int,
     title: MultiLanguageTitle.fromJson(json['title'] as Map<String, dynamic>),
   );
 }

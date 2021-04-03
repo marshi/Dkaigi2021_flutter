@@ -9,7 +9,7 @@ part 'feed_item.g.dart';
 @freezed
 abstract class FeedItem with _$FeedItem {
   const factory FeedItem({
-    required String id,
+    required int id,
     required MultiLanguageTitle title,
   }) = _FeedItem;
 

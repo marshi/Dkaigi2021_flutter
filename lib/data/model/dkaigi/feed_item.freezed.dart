@@ -20,7 +20,7 @@ FeedItem _$FeedItemFromJson(Map<String, dynamic> json) {
 class _$FeedItemTearOff {
   const _$FeedItemTearOff();
 
-  _FeedItem call({required String id, required MultiLanguageTitle title}) {
+  _FeedItem call({required int id, required MultiLanguageTitle title}) {
     return _FeedItem(
       id: id,
       title: title,
@@ -37,7 +37,7 @@ const $FeedItem = _$FeedItemTearOff();
 
 /// @nodoc
 mixin _$FeedItem {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   MultiLanguageTitle get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ mixin _$FeedItem {
 abstract class $FeedItemCopyWith<$Res> {
   factory $FeedItemCopyWith(FeedItem value, $Res Function(FeedItem) then) =
       _$FeedItemCopyWithImpl<$Res>;
-  $Res call({String id, MultiLanguageTitle title});
+  $Res call({int id, MultiLanguageTitle title});
 
   $MultiLanguageTitleCopyWith<$Res> get title;
 }
@@ -72,7 +72,7 @@ class _$FeedItemCopyWithImpl<$Res> implements $FeedItemCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$FeedItemCopyWith<$Res> implements $FeedItemCopyWith<$Res> {
   factory _$FeedItemCopyWith(_FeedItem value, $Res Function(_FeedItem) then) =
       __$FeedItemCopyWithImpl<$Res>;
   @override
-  $Res call({String id, MultiLanguageTitle title});
+  $Res call({int id, MultiLanguageTitle title});
 
   @override
   $MultiLanguageTitleCopyWith<$Res> get title;
@@ -117,7 +117,7 @@ class __$FeedItemCopyWithImpl<$Res> extends _$FeedItemCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ class _$_FeedItem with DiagnosticableTreeMixin implements _FeedItem {
       _$_$_FeedItemFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final MultiLanguageTitle title;
 
@@ -183,12 +183,12 @@ class _$_FeedItem with DiagnosticableTreeMixin implements _FeedItem {
 
 abstract class _FeedItem implements FeedItem {
   const factory _FeedItem(
-      {required String id, required MultiLanguageTitle title}) = _$_FeedItem;
+      {required int id, required MultiLanguageTitle title}) = _$_FeedItem;
 
   factory _FeedItem.fromJson(Map<String, dynamic> json) = _$_FeedItem.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   @override
   MultiLanguageTitle get title => throw _privateConstructorUsedError;
   @override

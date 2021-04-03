@@ -1,7 +1,6 @@
-import 'package:app/ui/dhome/dhome_view_model.dart';
+import 'package:app/ui/dhome/home_tab.dart';
 import 'package:app/ui/dhome/my_behavior.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DHomePage extends StatefulWidget {
   @override
@@ -32,7 +31,7 @@ class _DHomePageState extends State<DHomePage> {
               behavior: MyBehavior(),
               child: const TabBarView(
                 children: [
-                  TabPage(icon: Icons.directions_car),
+                  HomeTab(icon: Icons.directions_car),
                   TabPage(icon: Icons.directions_bike),
                   TabPage(icon: Icons.directions_bike),
                   TabPage(icon: Icons.directions_bike),

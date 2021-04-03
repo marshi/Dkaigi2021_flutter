@@ -11,7 +11,7 @@ class FeedRepositoryImpl implements FeedRepository {
   final FeedDataSource _dataSource;
 
   @override
-  Future<Result<FeedItem>> feedContents() {
+  Future<Result<List<FeedItem>>> feedContents() {
     return _dataSource.feedContents();
   }
 }
