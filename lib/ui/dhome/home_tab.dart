@@ -1,4 +1,5 @@
 import 'package:app/ui/dhome/dhome_view_model.dart';
+import 'package:app/ui/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,9 +15,9 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = context.read(dhomeViewModelProvider);
+    var homeViewModel = context.read(homeViewModelProvider);
     return HookBuilder(
       builder: (context) {
-        print("aiueo");
         var scrollController = ScrollController();
         return Column(
           children: [
@@ -42,9 +43,10 @@ class HomeTab extends StatelessWidget {
             MaterialButton(
               child: const Text("aiueo"),
               onPressed: () {
-                viewModel.feedContents();
-                scrollController
-                    .jumpTo(scrollController.position.maxScrollExtent + 20);
+                context.read(homeViewModelProvider).fetchNews();
+                // viewModel.feedContents().catchError(print);
+                // scrollController
+                //     .jumpTo(scrollController.position.maxScrollExtent + 20);
               },
             ),
           ],

@@ -12,11 +12,17 @@ class DHomeViewModel extends StateNotifier<DhomeState> {
 
   DHomeViewModel(this._feedRepository) : super(const DhomeState(feedItems: []));
 
-  void feedContents() {
-    _feedRepository.feedContents().then((value) {
+  Future<void> feedContents() {
+    print("feedContents");
+    return _feedRepository.feedContents().then((value) {
       if (value.isSuccess) {
         state = state.copyWith(feedItems: state.feedItems + value.dataOrThrow);
-      } else {}
+        print(state);
+      } else {
+        print("aiueo ${value} ababa");
+      }
+    }).onError((error, stackTrace) {
+      print("ai ${error}");
     });
   }
 }

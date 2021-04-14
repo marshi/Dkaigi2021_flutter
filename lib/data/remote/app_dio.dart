@@ -9,15 +9,15 @@ import '../../constants.dart';
 class AppDio with DioMixin implements Dio {
   AppDio._([BaseOptions? options]) {
     options = BaseOptions(
-      baseUrl: Constants.of().endpoint,
-      contentType: 'application/json',
-      connectTimeout: 30000,
-      sendTimeout: 30000,
-      receiveTimeout: 30000,
+      baseUrl: options?.baseUrl ?? Constants.of().endpoint,
+      contentType: options?.contentType ?? 'application/json',
+      connectTimeout: options?.connectTimeout ?? 300000,
+      sendTimeout: options?.sendTimeout ?? 300000,
+      receiveTimeout: options?.receiveTimeout ?? 300000,
     );
 
     this.options = options;
-    interceptors.add(InterceptorsWrapper(onRequest: (options) async {
+    interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
       options.headers.addAll(await userAgentClientHintsHeader());
     }));
 
@@ -34,4 +34,8 @@ class AppDio with DioMixin implements Dio {
   }
 
   static Dio getInstance() => AppDio._();
+
+  factory AppDio.instance(BaseOptions? options) {
+    return AppDio._();
+  }
 }

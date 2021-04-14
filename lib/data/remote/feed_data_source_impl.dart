@@ -1,43 +1,42 @@
-import 'package:app/data/model/dkaigi/feed_item.dart';
-import 'package:app/data/model/dkaigi/multi_language_title.dart';
+import 'package:app/data/model/dkaigi/feed/feed_response.dart';
 import 'package:app/data/model/result.dart';
 import 'package:app/data/remote/feed_data_source.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class FeedDataSourceImpl implements FeedDataSource {
-  FeedDataSourceImpl(this._firebaseAuth);
+  FeedDataSourceImpl(this._dio);
 
-  final firebase.FirebaseAuth _firebaseAuth;
-
-  var id = 0;
-
-  Future<void> signOut() {
-    return GoogleSignIn()
-        .signOut()
-        .then((_) => _firebaseAuth.signOut())
-        .catchError((error) {
-      debugPrint(error.toString());
-      throw error;
-    });
-  }
+  final Dio _dio;
 
   @override
-  Future<Result<List<FeedItem>>> feedContents() {
-    print(id);
-    return Future.sync(
-      () => Result.success(
-        data: [
-          FeedItem(
-            id: id++,
-            title: const MultiLanguageTitle(
-              jaTitle: "jaTitle",
-              enTitle: "enTitle",
-            ),
-          )
-        ],
-      ),
-    );
+  Future<FeedResponse> feedContents() {
+    print("feed");
+    print(_dio);
+    return _dio
+        .get<Map<String, dynamic>>("/feeds/recentaieuoiu")
+        .then((response) {
+      print("a get ${response} oo");
+      return FeedResponse.fromJson(response.data!);
+    }).onError((error, stackTrace) {
+      print(error);
+      return Future.error(error!);
+    });
+    // future.whenComplete(() => print("complete"));
+    // return future;
+    // dio.get("/feeds/recent").future((value) => FeedItem.);
+    // return Future.sync(
+    //   () => Result.success(
+    //     data: [
+    //       FeedItem(
+    //         id: id++,
+    //         title: const MultiLanguageTitle(
+    //           jaTitle: "jaTitle",
+    //           enTitle: "enTitle",
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
   }
 }

@@ -23,7 +23,7 @@ class _$NewsTearOff {
   _News call(
       {required String status,
       required int totalResults,
-      List<Article>? articles}) {
+      required List<Article> articles}) {
     return _News(
       status: status,
       totalResults: totalResults,
@@ -43,7 +43,7 @@ const $News = _$NewsTearOff();
 mixin _$News {
   String get status => throw _privateConstructorUsedError;
   int get totalResults => throw _privateConstructorUsedError;
-  List<Article>? get articles => throw _privateConstructorUsedError;
+  List<Article> get articles => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ mixin _$News {
 abstract class $NewsCopyWith<$Res> {
   factory $NewsCopyWith(News value, $Res Function(News) then) =
       _$NewsCopyWithImpl<$Res>;
-  $Res call({String status, int totalResults, List<Article>? articles});
+  $Res call({String status, int totalResults, List<Article> articles});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$NewsCopyWithImpl<$Res> implements $NewsCopyWith<$Res> {
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<Article>?,
+              as List<Article>,
     ));
   }
 }
@@ -93,7 +93,7 @@ abstract class _$NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
   factory _$NewsCopyWith(_News value, $Res Function(_News) then) =
       __$NewsCopyWithImpl<$Res>;
   @override
-  $Res call({String status, int totalResults, List<Article>? articles});
+  $Res call({String status, int totalResults, List<Article> articles});
 }
 
 /// @nodoc
@@ -123,7 +123,7 @@ class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
       articles: articles == freezed
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
-              as List<Article>?,
+              as List<Article>,
     ));
   }
 }
@@ -132,7 +132,10 @@ class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_News implements _News {
-  _$_News({required this.status, required this.totalResults, this.articles});
+  _$_News(
+      {required this.status,
+      required this.totalResults,
+      required this.articles});
 
   factory _$_News.fromJson(Map<String, dynamic> json) =>
       _$_$_NewsFromJson(json);
@@ -142,7 +145,7 @@ class _$_News implements _News {
   @override
   final int totalResults;
   @override
-  final List<Article>? articles;
+  final List<Article> articles;
 
   @override
   String toString() {
@@ -185,7 +188,7 @@ abstract class _News implements News {
   factory _News(
       {required String status,
       required int totalResults,
-      List<Article>? articles}) = _$_News;
+      required List<Article> articles}) = _$_News;
 
   factory _News.fromJson(Map<String, dynamic> json) = _$_News.fromJson;
 
@@ -194,7 +197,7 @@ abstract class _News implements News {
   @override
   int get totalResults => throw _privateConstructorUsedError;
   @override
-  List<Article>? get articles => throw _privateConstructorUsedError;
+  List<Article> get articles => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$NewsCopyWith<_News> get copyWith => throw _privateConstructorUsedError;

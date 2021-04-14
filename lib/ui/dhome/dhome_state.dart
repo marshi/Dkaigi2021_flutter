@@ -1,4 +1,4 @@
-import 'package:app/data/model/dkaigi/feed_item.dart';
+import 'package:app/model/feed_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dhome_state.freezed.dart';

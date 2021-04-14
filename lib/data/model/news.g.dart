@@ -10,8 +10,8 @@ _$_News _$_$_NewsFromJson(Map<String, dynamic> json) {
   return _$_News(
     status: json['status'] as String,
     totalResults: json['totalResults'] as int,
-    articles: (json['articles'] as List<dynamic>?)
-        ?.map((e) => Article.fromJson(e as Map<String, dynamic>))
+    articles: (json['articles'] as List<dynamic>)
+        .map((e) => Article.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

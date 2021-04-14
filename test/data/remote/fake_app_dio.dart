@@ -16,11 +16,13 @@ class FakeAppDio implements AppDio {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
+    print("fake");
     if (path.contains('/v2/everything')) {
       return FakeResponse(
               json.decode(dummyResponseNewsApi) as Map<String, dynamic>?)
           as Response<T>;
     } else {
+      print("unimplemented");
       throw UnimplementedError();
     }
   }

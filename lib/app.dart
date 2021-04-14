@@ -1,4 +1,5 @@
 import 'package:app/ui/dhome/dhome_page.dart';
+import 'package:app/ui/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -26,11 +27,11 @@ class App extends HookWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: setting,
-      home: DHomePage(),
+      home: HomePage(),
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       routes: {
-        Constants.pageHome: (context) => DHomePage(),
+        Constants.pageHome: (context) => HomePage(),
         Constants.pageSignIn: (context) => SignInPage(),
         Constants.pageDetail: (context) => DetailPage(),
       },

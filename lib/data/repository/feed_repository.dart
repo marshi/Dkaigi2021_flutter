@@ -1,4 +1,4 @@
-import '../model/dkaigi/feed_item.dart';
+import 'package:app/model/feed_item.dart';
 
 import '../model/result.dart';
 
