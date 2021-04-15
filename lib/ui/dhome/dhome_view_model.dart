@@ -16,7 +16,7 @@ class DHomeViewModel extends StateNotifier<DhomeState> {
     print("feedContents");
     return _feedRepository.feedContents().then((value) {
       if (value.isSuccess) {
-        state = state.copyWith(feedItems: state.feedItems + value.dataOrThrow);
+        state = state.copyWith(feedItems: value.dataOrThrow);
         print("state");
         print(state);
       } else {

@@ -25,7 +25,7 @@ class HomeTab extends StatelessWidget {
               final feedItems = useProvider(
                 dhomeViewModelProvider.state.select((value) => value.feedItems),
               );
-              print(feedItems);
+              print("length: ${feedItems.length}");
               return Expanded(
                 child: ListView.builder(
                   controller: scrollController,
