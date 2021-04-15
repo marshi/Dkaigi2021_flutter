@@ -1,11 +1,10 @@
-import '../thumbnail.dart';
-import 'external_id.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'articles.freezed.dart';
+import '../thumbnail.dart';
+import 'external_id.dart';
 
+part 'articles.freezed.dart';
 part 'articles.g.dart';
 
 @freezed

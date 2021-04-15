@@ -9,7 +9,6 @@ import 'firebase_auth_provider.dart';
 
 final feedDataSourceProvider = Provider<FeedDataSource>(
   (ref) => FeedDataSourceImpl(AppDio.instance(
-    null
-    // BaseOptions(baseUrl: Constants.of().dEndpoint),
+    BaseOptions(baseUrl: Constants.of().dEndpoint),
   )),
 );

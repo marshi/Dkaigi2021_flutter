@@ -17,12 +17,14 @@ class DHomeViewModel extends StateNotifier<DhomeState> {
     return _feedRepository.feedContents().then((value) {
       if (value.isSuccess) {
         state = state.copyWith(feedItems: state.feedItems + value.dataOrThrow);
+        print("state");
         print(state);
       } else {
         print("aiueo ${value} ababa");
       }
     }).onError((error, stackTrace) {
       print("ai ${error}");
+      print("ai ${stackTrace}");
     });
   }
 }

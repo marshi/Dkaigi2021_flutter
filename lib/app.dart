@@ -27,11 +27,11 @@ class App extends HookWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: setting,
-      home: HomePage(),
+      home: DHomePage(),
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       routes: {
-        Constants.pageHome: (context) => HomePage(),
+        Constants.pageHome: (context) => DHomePage(),
         Constants.pageSignIn: (context) => SignInPage(),
         Constants.pageDetail: (context) => DetailPage(),
       },

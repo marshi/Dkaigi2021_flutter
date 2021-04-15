@@ -19,6 +19,7 @@ class AppDio with DioMixin implements Dio {
     this.options = options;
     interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
       options.headers.addAll(await userAgentClientHintsHeader());
+      handler.next(options);
     }));
 
     // Firebase Performance
@@ -36,6 +37,6 @@ class AppDio with DioMixin implements Dio {
   static Dio getInstance() => AppDio._();
 
   factory AppDio.instance(BaseOptions? options) {
-    return AppDio._();
+    return AppDio._(options);
   }
 }

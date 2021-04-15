@@ -43,7 +43,7 @@ class HomeTab extends StatelessWidget {
             MaterialButton(
               child: const Text("aiueo"),
               onPressed: () {
-                context.read(homeViewModelProvider).fetchNews();
+                viewModel.feedContents();
                 // viewModel.feedContents().catchError(print);
                 // scrollController
                 //     .jumpTo(scrollController.position.maxScrollExtent + 20);

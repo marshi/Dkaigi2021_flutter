@@ -16,7 +16,6 @@ class FeedRepositoryImpl implements FeedRepository {
   @override
   Future<Result<List<FeedItem>>> feedContents() {
     final future = _dataSource.feedContents().then((v) {
-      print("v ${v}");
       return v.articles.map(
         (article) {
           return FeedItem.blog(

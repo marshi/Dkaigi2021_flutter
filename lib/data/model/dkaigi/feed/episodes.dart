@@ -22,7 +22,7 @@ abstract class Episodes with _$Episodes {
     required ExternalId externalId,
     required String title,
     required String summary,
-    required int duration,
+    required num duration,
     required String durationLabel,
     required List<Speakers> speakers,
     required Thumbnail thumbnail,
