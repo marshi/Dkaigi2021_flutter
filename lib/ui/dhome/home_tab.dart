@@ -1,5 +1,6 @@
+import 'dart:async';
+
 import 'package:app/ui/dhome/dhome_view_model.dart';
-import 'package:app/ui/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,7 +16,6 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var viewModel = context.read(dhomeViewModelProvider);
-    var homeViewModel = context.read(homeViewModelProvider);
     return HookBuilder(
       builder: (context) {
         var scrollController = ScrollController();
@@ -25,13 +25,29 @@ class HomeTab extends StatelessWidget {
               final feedItems = useProvider(
                 dhomeViewModelProvider.state.select((value) => value.feedItems),
               );
+              final scrolled = useProvider(dhomeViewModelProvider.state
+                  .select((value) => value.scrolled));
               print("length: ${feedItems.length}");
+              if (!scrolled) {
+                print("post build?");
+                Future.delayed(Duration(seconds: 1), () {
+                  scrollController
+                      .jumpTo(scrollController.position.maxScrollExtent);
+                  viewModel.scrolled();
+                });
+                // WidgetsBinding.instance?.addPostFrameCallback((_) {
+                //   scrollController
+                //       .jumpTo(scrollController.position.maxScrollExtent);
+                //   viewModel.scrolled();
+                // });
+              }
               return Expanded(
                 child: ListView.builder(
                   controller: scrollController,
                   shrinkWrap: true,
                   itemCount: feedItems.length,
                   itemBuilder: (context, index) {
+                    print("build?");
                     return Text(
                       feedItems[index].id.toString(),
                       key: ValueKey(feedItems[index].id),
@@ -44,9 +60,6 @@ class HomeTab extends StatelessWidget {
               child: const Text("aiueo"),
               onPressed: () {
                 viewModel.feedContents();
-                // viewModel.feedContents().catchError(print);
-                // scrollController
-                //     .jumpTo(scrollController.position.maxScrollExtent + 20);
               },
             ),
           ],

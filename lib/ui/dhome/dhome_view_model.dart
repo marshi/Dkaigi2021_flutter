@@ -10,21 +10,32 @@ final dhomeViewModelProvider = StateNotifierProvider(
 class DHomeViewModel extends StateNotifier<DhomeState> {
   final FeedRepository _feedRepository;
 
-  DHomeViewModel(this._feedRepository) : super(const DhomeState(feedItems: []));
+  DHomeViewModel(this._feedRepository)
+      : super(DhomeState(feedItems: [], scrolled: false, id: 0));
 
   Future<void> feedContents() {
-    print("feedContents");
     return _feedRepository.feedContents().then((value) {
       if (value.isSuccess) {
-        state = state.copyWith(feedItems: value.dataOrThrow);
-        print("state");
-        print(state);
+        state = state.copyWith(
+            feedItems: state.feedItems +
+                value.dataOrThrow
+                    .map((e) => e.copyWith(id: "${e.id}_${state.id}"))
+                    .toList(),
+            scrolled: false,
+            id: state.id + 1);
       } else {
         print("aiueo ${value} ababa");
       }
     }).onError((error, stackTrace) {
-      print("ai ${error}");
       print("ai ${stackTrace}");
     });
+  }
+
+  void scroll() {
+    state = state.copyWith(scrolled: false);
+  }
+
+  void scrolled() {
+    state = state.copyWith(scrolled: true);
   }
 }
