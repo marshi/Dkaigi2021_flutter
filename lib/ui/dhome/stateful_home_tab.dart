@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -24,21 +25,26 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
   @override
   Widget build(BuildContext context) {
     var viewModel = context.read(dhomeViewModelProvider);
+
     return HookBuilder(
       builder: (context) {
+        final feedItems = useProvider(
+          dhomeViewModelProvider.state.select((value) => value.feedItems),
+        );
+
         return Column(
           children: [
             HookBuilder(builder: (context) {
-              final feedItems = useProvider(
-                dhomeViewModelProvider.state.select((value) => value.feedItems),
-              );
               return Expanded(
                 child: ScrollablePositionedList.builder(
                   itemCount: feedItems.length,
                   itemScrollController: scrollController,
                   itemPositionsListener: _itemPositionsListener,
                   itemBuilder: (context, index) {
-                    print("build?");
+                    SchedulerBinding.instance?.addPostFrameCallback((_) {
+                      print("build hahah");
+                      _scroll(feedItems.length - 1);
+                    });
                     return Text(
                       feedItems[index].id.toString(),
                     );
@@ -48,18 +54,14 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
             }),
             HookBuilder(
               builder: (context) {
-                final feedItems = useProvider(
-                  dhomeViewModelProvider.state
-                      .select((value) => value.feedItems),
-                );
                 return MaterialButton(
                   child: const Text("aiueo"),
                   onPressed: () {
                     viewModel.feedContents();
-                    () async {
-                      await Future.delayed(const Duration(seconds: 1));
-                      _scroll(feedItems.length - 1);
-                    }();
+                    // () async {
+                    //   await Future.delayed(const Duration(seconds: 1));
+                    //   _scroll(feedItems.length - 1);
+                    // }();
                   },
                 );
               },
@@ -91,6 +93,6 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
     final visibleIndexes = _itemPositionsListener.itemPositions.value
         .toList()
         .map((itemPosition) => itemPosition.index);
-    print('現在表示中アイテムのindexは $visibleIndexes');
+    // print('現在表示中アイテムのindexは $visibleIndexes');
   }
 }

@@ -57,6 +57,7 @@ dependencies:
   flutter_tab_bar_no_ripple: ^0.1.1
 
   scrollable_positioned_list: ^0.1.10
+  after_layout: ^1.1.0
 
 dev_dependencies:
   flutter_test:
