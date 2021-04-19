@@ -17,12 +17,6 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
       ItemPositionsListener.create();
 
   @override
-  void initState() {
-    super.initState();
-    _itemPositionsListener.itemPositions.addListener(_itemPositionsCallback);
-  }
-
-  @override
   Widget build(BuildContext context) {
     var viewModel = context.read(dhomeViewModelProvider);
 
@@ -42,7 +36,7 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
                   itemPositionsListener: _itemPositionsListener,
                   itemBuilder: (context, index) {
                     SchedulerBinding.instance?.addPostFrameCallback((_) {
-                      print("build hahah");
+                      print("build?");
                       _scroll(feedItems.length - 1);
                     });
                     return Text(
@@ -72,13 +66,6 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
     );
   }
 
-  @override
-  void dispose() {
-    // 使い終わったら破棄
-    _itemPositionsListener.itemPositions.removeListener(_itemPositionsCallback);
-    super.dispose();
-  }
-
   void _scroll(int position) {
     // スムーズスクロールを実行する
     scrollController.scrollTo(
@@ -86,13 +73,5 @@ class _StatefulHomeTabState extends State<StatefulHomeTab> {
       duration: Duration(seconds: 1),
       curve: Curves.easeInOutCubic,
     );
-  }
-
-  void _itemPositionsCallback() {
-    // 表示中のリストアイテムのインデックス情報を取得
-    final visibleIndexes = _itemPositionsListener.itemPositions.value
-        .toList()
-        .map((itemPosition) => itemPosition.index);
-    // print('現在表示中アイテムのindexは $visibleIndexes');
   }
 }
