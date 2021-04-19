@@ -32,8 +32,8 @@ class _DHomePageState extends State<DHomePage> {
               behavior: MyBehavior(),
               child: TabBarView(
                 children: [
-                  StatefulHomeTab(
-                    // icon: Icons.directions_car,
+                  HomeTab(
+                    icon: Icons.directions_car,
                   ),
                   TabPage(icon: Icons.directions_bike),
                   TabPage(icon: Icons.directions_bike),
