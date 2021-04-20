@@ -1,6 +1,6 @@
 import 'package:app/ui/dhome/home_tab.dart';
 import 'package:app/ui/dhome/my_behavior.dart';
-import 'package:app/ui/dhome/stateful_home_tab.dart';
+import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 
 class DHomePage extends StatefulWidget {
@@ -20,28 +20,34 @@ class _DHomePageState extends State<DHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-          length: _tab.length,
-          child: Scaffold(
-            appBar: AppBar(
-              title: const Text("TabBar"),
-              bottom: TabBar(
-                tabs: _tab,
-              ),
+        length: _tab.length,
+        child: BackdropScaffold(
+          appBar: BackdropAppBar(
+            title: Container(child: Text("TabBar"), width: double.infinity),
+            bottom: TabBar(
+              tabs: _tab,
             ),
-            body: ScrollConfiguration(
-              behavior: MyBehavior(),
-              child: TabBarView(
-                children: [
-                  HomeTab(
-                    icon: Icons.directions_car,
-                  ),
-                  TabPage(icon: Icons.directions_bike),
-                  TabPage(icon: Icons.directions_bike),
-                  TabPage(icon: Icons.directions_bike),
-                ],
-              ),
+          ),
+          backLayer: BackdropNavigationBackLayer(items: [
+            Text("TabBar"),
+            Text("TabBar2"),
+          ]),
+          stickyFrontLayer: true,
+          frontLayer: ScrollConfiguration(
+            behavior: MyBehavior(),
+            child: TabBarView(
+              children: [
+                HomeTab(
+                  icon: Icons.directions_car,
+                ),
+                TabPage(icon: Icons.directions_bike),
+                TabPage(icon: Icons.directions_bike),
+                TabPage(icon: Icons.directions_bike),
+              ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
