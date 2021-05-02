@@ -1,5 +1,5 @@
+import 'package:app/ui/dhome/dhome_item.dart';
 import 'package:app/ui/dhome/dhome_view_model.dart';
-import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,15 +25,16 @@ class HomeTab extends StatelessWidget {
                 dhomeViewModelProvider.state.select((value) => value.feedItems),
               );
               return Expanded(
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (context, index) =>
+                      Divider(color: Colors.black),
                   controller: scrollController,
                   shrinkWrap: true,
                   itemCount: feedItems.length,
                   itemBuilder: (context, index) {
-                    return Text(
-                      feedItems[index].id.toString(),
-                      key: ValueKey(feedItems[index].id),
-                    );
+                    return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: DHomeItem(index));
                   },
                 ),
               );
