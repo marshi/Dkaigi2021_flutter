@@ -25,27 +25,38 @@ class DHomeItem extends StatelessWidget {
                   height: 100,
                   image: NetworkImage(feedItem.image.smallUrl),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                          child: Center(child: Text(feedItem.title.jaTitle)),
-                          flex: 2),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Icon(Icons.article),
-                          ],
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            child: Text(
+                              feedItem.title.jaTitle,
+                              maxLines: 2,
+                              style: TextStyle(),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            alignment: Alignment.centerLeft,
+                          ),
+                          flex: 2,
                         ),
-                        flex: 1,
-                      ),
-                      Expanded(
-                          child: Text(feedItem.publishedAt.toString()),
-                          flex: 1),
-                    ],
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Icon(Icons.article),
+                            ],
+                          ),
+                          flex: 1,
+                        ),
+                        Expanded(
+                            child: Text(feedItem.publishedAt.toString()),
+                            flex: 1),
+                      ],
+                    ),
                   ),
                 )
               ],
