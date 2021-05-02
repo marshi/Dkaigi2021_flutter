@@ -34,7 +34,7 @@ class HomeTab extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: DHomeItem(index));
+                        child: DHomeItem(index, feedItems[index]));
                   },
                 ),
               );

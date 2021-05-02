@@ -19,14 +19,17 @@ abstract class FeedItem with _$FeedItem {
   const factory FeedItem({
     required String id,
     required Media media,
+    required Image image,
+    required MultiLanguageText title,
+    required DateTime publishedAt,
   }) = _FeedItem;
 
   const factory FeedItem.blog({
     @override required String id,
-    required DateTime publishedAt,
-    required Image image,
+    @override required DateTime publishedAt,
+    @override required Image image,
     @override required Medium media,
-    required MultiLanguageText title,
+    @override required MultiLanguageText title,
     required MultiLanguageText summary,
     required String link,
     required String language,
@@ -35,20 +38,20 @@ abstract class FeedItem with _$FeedItem {
 
   const factory FeedItem.video({
     @override required String id,
-    required DateTime publishedAt,
-    required Image image,
+    @override required DateTime publishedAt,
+    @override required Image image,
     @override required YouTube media,
-    required MultiLanguageText title,
+    @override required MultiLanguageText title,
     required MultiLanguageText summary,
     required String link,
   }) = Video;
 
   const factory FeedItem.podcast({
     required String id,
-    required DateTime publishedAt,
-    required Image image,
+    @override required DateTime publishedAt,
+    @override required Image image,
     @override required Podcast media,
-    required MultiLanguageText title,
+    @override required MultiLanguageText title,
     required MultiLanguageText summary,
     required String link,
     required List<Speaker> speakers,

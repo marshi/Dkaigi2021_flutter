@@ -1,15 +1,18 @@
+import 'package:app/model/feed_item.dart';
 import 'package:flutter/material.dart';
 
 class DHomeItem extends StatelessWidget {
   final int _index;
+  final FeedItem feedItem;
 
-  DHomeItem(this._index);
+  DHomeItem(this._index, this.feedItem);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 120,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("tag"),
           Expanded(
@@ -17,11 +20,10 @@ class DHomeItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Image(
+                Image(
                   width: 100,
                   height: 100,
-                  image: NetworkImage(
-                      "https://flutter.dev/images/catalog-widget-placeholder.png"),
+                  image: NetworkImage(feedItem.image.smallUrl),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
@@ -30,7 +32,8 @@ class DHomeItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                          child: Center(child: Text("title $_index")), flex: 2),
+                          child: Center(child: Text(feedItem.title.jaTitle)),
+                          flex: 2),
                       Expanded(
                         child: Row(
                           children: [
@@ -39,7 +42,9 @@ class DHomeItem extends StatelessWidget {
                         ),
                         flex: 1,
                       ),
-                      Expanded(child: Text("Datetime"), flex: 1),
+                      Expanded(
+                          child: Text(feedItem.publishedAt.toString()),
+                          flex: 1),
                     ],
                   ),
                 )
