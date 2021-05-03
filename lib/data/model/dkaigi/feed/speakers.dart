@@ -1,3 +1,4 @@
+import 'package:app/model/speaker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'speakers.freezed.dart';
@@ -15,4 +16,8 @@ abstract class Speakers with _$Speakers {
     required String name,
     required String iconUrl,
   }) = _Speakers;
+
+  Speaker toSpeakerModel() {
+    return  Speaker(name: name, iconUrl: iconUrl);
+  }
 }

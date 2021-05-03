@@ -55,7 +55,23 @@ class FeedRepositoryImpl implements FeedRepository {
           link: recording.link,
         );
       }).toList();
-      final feedItems = blogs + videos;
+      final fm = v.episodes.map((recording) {
+        return FeedItem.podcast(
+            id: recording.id,
+            publishedAt: DateTime.parse(recording.publishedAt),
+            image: recording.thumbnail.toImage(),
+            media: Media.droidKaigiFM,
+            title: MultiLanguageText(
+                jaTitle: recording.title, enTitle: recording.title),
+            summary: MultiLanguageText(
+                jaTitle: recording.summary, enTitle: recording.summary),
+            link: recording.link,
+            speakers:
+                recording.speakers.map((e) => e.toSpeakerModel()).toList(),
+            podcastLink: recording.link);
+      }).toList();
+      final feedItems = blogs + videos + fm;
+      feedItems.sort((a, b) => -a.publishedAt.compareTo(b.publishedAt));
       return feedItems;
     });
     return Result.guardFuture(() => future);
