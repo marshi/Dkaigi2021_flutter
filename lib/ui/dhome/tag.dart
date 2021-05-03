@@ -9,8 +9,8 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(media.str, style: TextStyle(color: Colors.white)),
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      child: Text(media.str, style: const TextStyle(color: Colors.white)),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: const ShapeDecoration(
         color: Colors.greenAccent,
         shape: BeveledRectangleBorder(
