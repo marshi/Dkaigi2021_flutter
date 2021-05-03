@@ -1,4 +1,5 @@
 import 'package:app/model/feed_item.dart';
+import 'package:app/model/media.dart';
 import 'package:app/ui/dhome/tag.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class DHomeItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Tag(),
+          Tag(feedItem.media),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,

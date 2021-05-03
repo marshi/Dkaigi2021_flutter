@@ -9,6 +9,8 @@ part 'media.g.dart';
 abstract class Media with _$Media {
   // Media({required String str});
 
+  abstract final String str;
+
   Media._();
 
   factory Media.youtube_(String str) = YouTube;

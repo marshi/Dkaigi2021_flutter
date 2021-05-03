@@ -1,10 +1,15 @@
+import 'package:app/model/media.dart';
 import 'package:flutter/material.dart';
 
 class Tag extends StatelessWidget {
+  Media media;
+
+  Tag(this.media);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("dataaiueo", style: TextStyle(color: Colors.white)),
+      child: Text(media.str, style: TextStyle(color: Colors.white)),
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: const ShapeDecoration(
         color: Colors.greenAccent,
