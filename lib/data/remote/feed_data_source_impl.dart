@@ -9,13 +9,9 @@ class FeedDataSourceImpl implements FeedDataSource {
 
   @override
   Future<FeedResponse> feedContents() {
-    print("feed");
-    print(_dio);
     return _dio.get<Map<String, dynamic>>("/feeds/recent").then((response) {
-      print("a get ${response} oo");
       return FeedResponse.fromJson(response.data!);
     }).onError((error, stackTrace) {
-      print(error);
       return Future.error(error!);
     });
   }
