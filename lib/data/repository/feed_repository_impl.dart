@@ -16,7 +16,7 @@ class FeedRepositoryImpl implements FeedRepository {
   @override
   Future<Result<List<FeedItem>>> feedContents() {
     final future = _dataSource.feedContents().then((v) {
-      return v.articles.map(
+      final blogs = v.articles.map(
         (article) {
           return FeedItem.blog(
             id: article.id,
@@ -40,6 +40,23 @@ class FeedRepositoryImpl implements FeedRepository {
           );
         },
       ).toList();
+      final videos = v.recordings.map((recording) {
+        return FeedItem.video(
+          id: recording.id,
+          publishedAt: DateTime.parse(recording.publishedAt),
+          image: recording.thumbnail.toImage(),
+          media: Media.youtube,
+          title: MultiLanguageText(
+              jaTitle: recording.title.japanese,
+              enTitle: recording.title.english),
+          summary: MultiLanguageText(
+              jaTitle: recording.summary.japanese,
+              enTitle: recording.summary.english),
+          link: recording.link,
+        );
+      }).toList();
+      final feedItems = blogs + videos;
+      return feedItems;
     });
     return Result.guardFuture(() => future);
   }

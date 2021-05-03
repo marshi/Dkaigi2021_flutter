@@ -11,9 +11,9 @@ class Tag extends StatelessWidget {
     return Container(
       child: Text(media.str, style: const TextStyle(color: Colors.white)),
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      decoration: const ShapeDecoration(
-        color: Colors.greenAccent,
-        shape: BeveledRectangleBorder(
+      decoration: ShapeDecoration(
+        color: media.color,
+        shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(6),
               bottomLeft: Radius.circular(0),
