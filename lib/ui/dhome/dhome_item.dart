@@ -1,5 +1,4 @@
 import 'package:app/model/feed_item.dart';
-import 'package:app/model/media.dart';
 import 'package:app/ui/dhome/tag.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +54,13 @@ class DHomeItem extends StatelessWidget {
                           flex: 1,
                         ),
                         Expanded(
-                            child: Text(feedItem.publishedAt.toString()),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(feedItem.publishedAt.toString()),
+                                Icon(Icons.favorite_border_outlined),
+                              ],
+                            ),
                             flex: 1),
                       ],
                     ),
