@@ -19,36 +19,40 @@ class DhomeHeaderItem extends StatelessWidget {
             image: NetworkImage(feedItem.image.largeUrl),
             fit: BoxFit.fitWidth,
           ),
-          Row(
+          Column(
             children: [
-              Expanded(
-                flex: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      feedItem.title.jaTitle,
-                      style: const TextStyle(fontSize: 28),
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    Row(
+              Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Tag(feedItem.media),
-                        Container(
-                            margin: const EdgeInsets.only(left: 10),
-                            child: Text(feedItem.publishedAt.toString()))
+                        Text(
+                          feedItem.title.jaTitle,
+                          style: const TextStyle(fontSize: 26),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  const Expanded(
+                    flex: 1,
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                    ),
+                  )
+                ],
               ),
-              const Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.favorite_border_outlined,
-                ),
+              Row(
+                children: [
+                  Tag(feedItem.media),
+                  Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      child: Text(feedItem.publishedAt.toString()))
+                ],
               )
             ],
           )
