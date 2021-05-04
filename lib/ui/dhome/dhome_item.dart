@@ -1,5 +1,6 @@
 import 'package:app/model/feed_item.dart';
 import 'package:app/ui/dhome/tag.dart';
+import 'package:app/ui/dhome/user_icon_row.dart';
 import 'package:flutter/material.dart';
 
 class DHomeItem extends StatelessWidget {
@@ -12,6 +13,7 @@ class DHomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 120,
+      color: Colors.grey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,11 +47,7 @@ class DHomeItem extends StatelessWidget {
                           flex: 2,
                         ),
                         Expanded(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.article),
-                            ],
-                          ),
+                          child: UserIconRow(),
                           flex: 1,
                         ),
                         Expanded(
