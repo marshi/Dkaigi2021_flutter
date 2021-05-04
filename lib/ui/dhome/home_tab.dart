@@ -1,3 +1,5 @@
+import 'package:app/model/feed_item.dart';
+import 'package:app/ui/dhome/dhome_header_item.dart';
 import 'package:app/ui/dhome/dhome_item.dart';
 import 'package:app/ui/dhome/dhome_view_model.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +35,9 @@ class HomeTab extends StatelessWidget {
                   itemCount: feedItems.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: DHomeItem(index, feedItems[index]));
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: feedItem(index, feedItems[index]),
+                    );
                   },
                 ),
               );
@@ -49,5 +52,13 @@ class HomeTab extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget feedItem(int index, FeedItem feedItem) {
+    if (index == 0) {
+      return DhomeHeaderItem(feedItem);
+    } else {
+      return DHomeItem(index, feedItem);
+    }
   }
 }
