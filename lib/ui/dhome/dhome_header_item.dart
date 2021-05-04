@@ -10,6 +10,7 @@ class DhomeHeaderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -26,8 +27,8 @@ class DhomeHeaderItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "aiueoaiueoaiueoaiueoaiueoaiueoaiueoaiueoaiueo",
-                      style: TextStyle(fontSize: 32),
+                      feedItem.title.jaTitle,
+                      style: const TextStyle(fontSize: 28),
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
