@@ -3,7 +3,7 @@ import 'package:app/ui/dhome/tag.dart';
 import 'package:flutter/material.dart';
 
 class DhomeHeaderItem extends StatelessWidget {
-  FeedItem feedItem;
+  final FeedItem feedItem;
 
   DhomeHeaderItem(this.feedItem);
 
