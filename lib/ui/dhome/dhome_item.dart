@@ -48,7 +48,7 @@ class DHomeItem extends StatelessWidget {
                         Expanded(
                           child: Row(
                             children: [
-                              Icon(Icons.article),
+                              const Icon(Icons.article),
                             ],
                           ),
                           flex: 1,
@@ -58,7 +58,7 @@ class DHomeItem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(feedItem.publishedAt.toString()),
-                                Icon(Icons.favorite_border_outlined),
+                                const Icon(Icons.favorite_border_outlined),
                               ],
                             ),
                             flex: 1),
