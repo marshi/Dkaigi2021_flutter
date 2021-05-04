@@ -38,7 +38,6 @@ class DHomeItem extends StatelessWidget {
                             child: Text(
                               feedItem.title.jaTitle,
                               maxLines: 2,
-                              style: TextStyle(),
                               overflow: TextOverflow.ellipsis,
                             ),
                             alignment: Alignment.centerLeft,
