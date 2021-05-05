@@ -8,79 +8,80 @@ class DHomePage extends StatefulWidget {
   _DHomePageState createState() => _DHomePageState();
 }
 
-class _DHomePageState extends State<DHomePage> {
-  final _tab = <Tab>[
-    const Tab(text: "Home"),
-    const Tab(text: "Blog"),
-    const Tab(text: "Video"),
-    const Tab(text: "Podcast"),
-  ];
+class _DHomePageState extends State<DHomePage>
+    with SingleTickerProviderStateMixin {
+  final _tab = <Tab, Widget>{
+    Tab(text: "Home"): HomeTab(),
+    Tab(text: "Blog"): TabPage(icon: Icons.directions_bike),
+    Tab(text: "Video"): TabPage(icon: Icons.directions_bike),
+    Tab(text: "Podcast"): TabPage(icon: Icons.directions_bike),
+  };
+
+  late final TabController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TabController(length: _tab.length, vsync: this);
+  }
 
   final key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DefaultTabController(
-        length: _tab.length,
-        child: BackdropScaffold(
-          appBar: BackdropAppBar(
-            title: Container(child: Text("TabBar"), width: double.infinity),
-            bottom: TabBar(
-              tabs: _tab,
-            ),
+      body: BackdropScaffold(
+        appBar: BackdropAppBar(
+          title: Container(child: Text("TabBar"), width: double.infinity),
+          bottom: TabBar(
+            tabs: _tab.keys.toList(),
+            controller: controller,
           ),
-          backLayer: BackdropNavigationBackLayer(key: key, items: [
-            Text("TabBar"),
-            Text("TabBar2"),
-          ]),
-          stickyFrontLayer: true,
-          frontLayer: ScrollConfiguration(
-            behavior: MyBehavior(),
-            child: NewWidget(backLayerKey: key),
-          ),
+        ),
+        backLayer: BackdropNavigationBackLayer(key: key, items: [
+          Text("TabBar"),
+          Text("TabBar2"),
+        ]),
+        stickyFrontLayer: true,
+        frontLayer: ScrollConfiguration(
+          behavior: MyBehavior(),
+          child: NewWidget(controller, _tab),
         ),
       ),
     );
   }
 }
 
-class NewWidget extends StatelessWidget {
-  final GlobalKey? backLayerKey;
-  double y = 1.0;
+class NewWidget extends StatefulWidget {
+  final TabController controller;
+  final Map<Tab, Widget> tabs;
 
-  NewWidget({
-    Key? key,
-    this.backLayerKey,
-  }) : super(key: key);
+  NewWidget(this.controller, this.tabs);
+
+  @override
+  _NewWidgetState createState() => _NewWidgetState(controller, tabs);
+}
+
+class _NewWidgetState extends State<NewWidget> {
+  double y = 1.0;
+  late final TabController controller;
+  final Map<Tab, Widget> tabs;
+
+  _NewWidgetState(this.controller, this.tabs);
+
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      print(controller.index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onVerticalDragUpdate: (details) {
-        final height = (backLayerKey?.currentContext?.size?.height);
-        final dy = details.delta.dy;
-        y -= dy;
-        y = y.clamp(0.0, height!);
-        var backdrop = Backdrop.of(context);
-        print("$y $dy $height");
-        final animateTo = (y - dy) / height;
-        final ani = animateTo.clamp(0.0, 1.0);
-        print("(${y} - $dy) / $height = ${ani}");
-        backdrop.widget.backLayer.key;
-        backdrop.animationController
-            .animateTo(ani, duration: Duration(seconds: 1));
-      },
-      child: TabBarView(
-        children: [
-          HomeTab(
-            icon: Icons.directions_car,
-          ),
-          TabPage(icon: Icons.directions_bike),
-          TabPage(icon: Icons.directions_bike),
-          TabPage(icon: Icons.directions_bike),
-        ],
-      ),
+    controller.index;
+    return TabBarView(
+      controller: controller,
+      children: tabs.values.toList(),
     );
   }
 }

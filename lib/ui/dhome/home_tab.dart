@@ -7,12 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeTab extends StatelessWidget {
-  final IconData icon;
-
-  HomeTab({
-    Key? key,
-    required this.icon,
-  }) : super(key: key);
+  HomeTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
