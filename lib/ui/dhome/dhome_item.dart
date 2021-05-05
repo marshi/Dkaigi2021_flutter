@@ -13,7 +13,7 @@ class DHomeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: 140,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,39 +35,37 @@ class DHomeItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                const SizedBox(width: 10),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            child: Text(
-                              feedItem.title.jaTitle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            alignment: Alignment.centerLeft,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: Text(
+                            feedItem.title.jaTitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          flex: 2,
+                          alignment: Alignment.centerLeft,
                         ),
-                        Expanded(
-                          child: SpeakerIconRow(feedItem),
-                          flex: 1,
-                        ),
-                        Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(feedItem.publishedAt.toString()),
-                                const Icon(Icons.favorite_border_outlined),
-                              ],
-                            ),
-                            flex: 1),
-                      ],
-                    ),
+                        flex: 2,
+                      ),
+                      Expanded(
+                        child: SpeakerIconRow(feedItem),
+                        flex: 1,
+                      ),
+                      Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(feedItem.publishedAt.toString()),
+                              const Icon(Icons.favorite_border_outlined),
+                            ],
+                          ),
+                          flex: 1),
+                    ],
                   ),
                 )
               ],
