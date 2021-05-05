@@ -1,6 +1,7 @@
 import 'package:app/model/feed_item.dart';
 import 'package:app/ui/dhome/tag.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'speaker_icon_row.dart';
 
@@ -39,32 +40,29 @@ class DHomeItem extends StatelessWidget {
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Container(
-                          child: Text(
-                            feedItem.title.jaTitle,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          alignment: Alignment.centerLeft,
+                      Container(
+                        child: Text(
+                          feedItem.title.jaTitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        flex: 2,
+                        alignment: Alignment.centerLeft,
                       ),
+                      const SizedBox(height: 10),
+                      SpeakerIconRow(feedItem),
                       Expanded(
-                        child: SpeakerIconRow(feedItem),
-                        flex: 1,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(feedItem.publishedAt.toString()),
+                            const Icon(Icons.favorite_border_outlined),
+                          ],
+                        ),
                       ),
-                      Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(feedItem.publishedAt.toString()),
-                              const Icon(Icons.favorite_border_outlined),
-                            ],
-                          ),
-                          flex: 1),
                     ],
                   ),
                 )
