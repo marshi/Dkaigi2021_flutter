@@ -1,7 +1,8 @@
 import 'package:app/model/feed_item.dart';
 import 'package:app/ui/dhome/tag.dart';
-import 'package:app/ui/dhome/user_icon_row.dart';
 import 'package:flutter/material.dart';
+
+import 'speaker_icon_row.dart';
 
 class DHomeItem extends StatelessWidget {
   final int _index;
@@ -13,7 +14,6 @@ class DHomeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 120,
-      color: Colors.grey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +30,7 @@ class DHomeItem extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class DHomeItem extends StatelessWidget {
                           flex: 2,
                         ),
                         Expanded(
-                          child: UserIconRow(),
+                          child: SpeakerIconRow(feedItem),
                           flex: 1,
                         ),
                         Expanded(
