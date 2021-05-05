@@ -18,15 +18,22 @@ class DHomeItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Tag(feedItem.media),
+          const SizedBox(width: 0, height: 10),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image(
+                Container(
                   width: 100,
                   height: 100,
-                  image: NetworkImage(feedItem.image.smallUrl),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(feedItem.image.smallUrl),
+                    ),
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
                 Expanded(
                   child: Padding(
