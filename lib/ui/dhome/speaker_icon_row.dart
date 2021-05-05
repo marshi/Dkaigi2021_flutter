@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'user_icon_row.dart';
 
 class SpeakerIconRow extends StatelessWidget {
-  FeedItem feedItem;
+  final FeedItem feedItem;
 
-  SpeakerIconRow(this.feedItem);
+  const SpeakerIconRow(this.feedItem);
 
   @override
   Widget build(BuildContext context) {

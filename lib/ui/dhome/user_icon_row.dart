@@ -1,5 +1,6 @@
-import 'package:app/ui/dhome/user_icon.dart';
 import 'package:flutter/material.dart';
+
+import 'user_icon.dart';
 
 class UserIconRow extends StatelessWidget {
   final List<String> userIconUrls;
@@ -7,6 +8,7 @@ class UserIconRow extends StatelessWidget {
   UserIconRow(this.userIconUrls);
 
   final unit = 16;
+  final size = 20.toDouble();
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,13 @@ class UserIconRow extends StatelessWidget {
         final index = entry.key;
         final userIconUrl = entry.value;
         return Positioned(
-          child: UserIcon(userIconUrl),
+          child: UserIcon(userIconUrl, size),
           left: maxLeft - (unit * index),
         );
       },
     ).toList();
     return Container(
-      height: 30,
+      height: size,
       child: Stack(fit: StackFit.loose, children: [...stackElements]),
     );
   }
