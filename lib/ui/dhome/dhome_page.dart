@@ -1,3 +1,4 @@
+import 'package:app/ui/dblog/blog_tab.dart';
 import 'package:app/ui/dhome/home_tab.dart';
 import 'package:app/ui/dhome/my_behavior.dart';
 import 'package:backdrop/backdrop.dart';
@@ -12,7 +13,7 @@ class _DHomePageState extends State<DHomePage>
     with SingleTickerProviderStateMixin {
   final _tab = <Tab, Widget>{
     Tab(text: "Home"): HomeTab(),
-    Tab(text: "Blog"): TabPage(icon: Icons.directions_bike),
+    Tab(text: "Blog"): BlogTab(),
     Tab(text: "Video"): TabPage(icon: Icons.directions_bike),
     Tab(text: "Podcast"): TabPage(icon: Icons.directions_bike),
   };
