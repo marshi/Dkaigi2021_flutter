@@ -8,24 +8,33 @@ class BlogTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.read(dblogViewModelProvider);
-    viewModel.feed();
     return HookBuilder(builder: (context) {
       return HookBuilder(
         builder: (context) {
           final items = useProvider(
             dblogViewModelProvider.state.select((value) => value.blogItems),
           );
-          return ListView.separated(
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DHomeItem(index, items[index]),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Divider(color: Colors.black);
-            },
-            itemCount: items.length,
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: DHomeItem(index, items[index]),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Divider(color: Colors.black);
+                  },
+                  itemCount: items.length,
+                ),
+              ),
+              MaterialButton(
+                child: const Text("aiueo"),
+                onPressed: viewModel.feed,
+              ),
+            ],
           );
         },
       );
