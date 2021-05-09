@@ -1,5 +1,5 @@
 import 'package:app/model/feed_item.dart';
-import 'package:app/ui/dhome/tag.dart';
+import 'package:app/ui/component/item/tag.dart';
 import 'package:flutter/material.dart';
 
 class DhomeHeaderItem extends StatelessWidget {

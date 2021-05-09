@@ -1,5 +1,5 @@
 import 'package:app/model/feed_item.dart';
-import 'package:app/ui/dhome/tag.dart';
+import 'package:app/ui/component/item/tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -28,6 +28,7 @@ class DHomeItem extends StatelessWidget {
                 height: 100,
                 decoration: BoxDecoration(
                   image: DecorationImage(
+                    fit: BoxFit.fitHeight,
                     image: NetworkImage(feedItem.image.smallUrl),
                   ),
                   color: Colors.black12,
